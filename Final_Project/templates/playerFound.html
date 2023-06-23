@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block title %}
+Player Data
+{% endblock %}
+
+{% block main %}
+<form action="/playerFound" method="post">
+    <table>
+        <tr>
+            <th>Player ID</th>
+            <th>Platform</th>
+        </tr>
+        <tr>
+            <td>{{ player_id }}</td>
+            <td>{{ Platform_id }}</td>
+        </tr
+    </table>
+</form>
+
+{% endblock %}
