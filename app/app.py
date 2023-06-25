@@ -5,10 +5,10 @@ import json
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'], )
 def findPlayer():
     if request.method == "GET":
-        return render_template("layout.html")
+        return render_template("index.html")
     else:
         username = request.form.get("player_id")
         platform = request.form.get("platform")
