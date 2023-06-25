@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET', 'POST'], )
+@app.route("/", methods=['GET', 'POST'])
 def findPlayer():
     if request.method == "GET":
         return render_template("index.html")
@@ -41,6 +41,4 @@ def lookup(player_id, platform_id):
     print(url)
     response = requests.get(url)
     data = response.json()
-    # print(data)
-
     return data
