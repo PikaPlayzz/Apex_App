@@ -22,8 +22,8 @@ def findPlayer():
             print("use PSN, XBL, Steam, Origin")
 
 
-        lookup(username, platform)
-        print(lookup(username, platform))
+        data = lookup(username, platform)
+        print(data)
 
         # lookup(username, platform)
 
@@ -37,11 +37,10 @@ def findPlayer():
 def lookup(player_id, platform_id):
 
     API_KEY = "9e62c7230a4e7afe9e409b010f663bb5"
-    url = f"https://api.mozambiquehe.re/bridge?auth={API_KEY}&player={player_id}&platform={platform_id}"
+    url = f"https://api.mozambiquehe.re/bridge?auth={API_KEY}&player=PikaPlayzMC3083&platform=X1"
     print(url)
     response = requests.get(url)
     data = response.json()
-    print(type(data))
-    print(data)
+    # print(data)
 
     return data
