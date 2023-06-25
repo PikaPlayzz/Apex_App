@@ -1,0 +1,35 @@
+input {
+    width: 30%;
+}
+body {
+    background-color: #404040;
+    color: White;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 13px;
+    margin: 40px;
+}
+footer {
+    background: #404040;
+    bottom: 5px;
+    position: absolute;
+    clear: both;
+}
+header {
+    background-color: #333;
+    color: White;
+    height: 130px;
+    font-size: 50px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+p {
+    background-color: #404040;
+    color: White;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-align: center;
+    border-bottom: Thin White solid;
+    padding: 3px;
+    font-size: 18px;
+    margin: 30px;
+}
