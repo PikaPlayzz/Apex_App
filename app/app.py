@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, redirect
+from dotenv import load_dotenv
+import os
 import requests
 import json
 
-
+load_dotenv()
 app = Flask(__name__)
+
+API_KEY = os.getenv("API_KEY")
 
 @app.route("/", methods=['GET', 'POST'])
 def findPlayer():
@@ -33,8 +37,6 @@ def findPlayer():
         return render_template("playerFound.html", player_data=data_json)
 
 def lookup(player_id, platform_id):
-
-    API_KEY = "9e62c7230a4e7afe9e409b010f663bb5"
     url = f"https://api.mozambiquehe.re/bridge?auth={API_KEY}&player={player_id}&platform={platform_id}"
     print(url)
     response = requests.get(url)
