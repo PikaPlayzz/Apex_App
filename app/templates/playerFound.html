@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-{% extends "/templates/layouts/index.html" %}
 
 {% block title %}
 Player Data
 {% endblock %}
 
 {% block main %}
-<form action="/playerFound" method="post">
-    <table>
-        <tr>
-            <th>Player ID</th>
-            <th>Platform</th>
-        </tr>
-        <tr>
-            <td>{{ player_id }}</td>
-            <td>{{ Platform_id }}</td>
-        </tr>
-    </table>
-</form>
+
+{{ player_data['global']['name'] }}<br>
+{{ player_data['global']['badges'][0]['name'] }}
+
+<hr />
+{{ player_data }}
 
 {% endblock %}
