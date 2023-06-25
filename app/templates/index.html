@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 
 <html lang="en-us">
-    <head>
-        <link rel="stylesheet" href="/static/assets/css/styles.css">    
-    </head>
-    <body>
-            <header>
-                Welcome to the Apex Legends Player Search Page
-            </header>
-            <br>
-            <p>
-                This website is designed for users to view their current stats, badges, trackers and rank history. To start tracking, simply put your username and platform into the search bar below.
-            </p>
-            <br>
-        <form action="/" method="post">
-            <div class="mb-3">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="player_id" placeholder="Username" type="text">
-                <select name="platform" id="platform">
-                    <option value="" disabled selected>Platform</option>
-                    <option value="PC">Steam</option>
-                    <option value="X1">Xbox</option>
-                    <option value="PS4">Playstation</option>
-                </select>
-            </div>
+<head>
+    <link rel="stylesheet" href="/static/assets/css/styles.css">
+</head>
 
-            <button class="btn btn-primary" type="submit">Find Player</button>
-        </form>
+<body>
+    <header>
+        Welcome to the Apex Legends Player Search Page
+    </header>
+    <br>
+    <p>
+        This website is designed for users to view their current stats, badges, trackers and rank history. To start
+        tracking, simply put your username and platform into the search bar below.
+    </p>
+    <br>
+    <form action="/" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="player_id"
+                placeholder="Username" type="text">
+            <select name="platform" id="platform">
+                <option value="" disabled selected>Platform</option>
+                <option value="PC">Steam</option>
+                <option value="X1">Xbox</option>
+                <option value="PS4">Playstation</option>
+            </select>
+        </div>
 
-        {% include 'footer.html' %}
-    </body>
+        <button class="btn btn-primary" type="submit">Find Player</button>
+    </form>
+
+    {% include 'footer.html' %}
+</body>
+
 </html>
