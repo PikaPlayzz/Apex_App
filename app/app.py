@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 import requests
 import json
+import sqlite3
 
 load_dotenv()
 app = Flask(__name__)
@@ -34,6 +35,9 @@ def findPlayer():
         data_str = json.dumps(data)
         print(type(data_str))
         data_json = json.loads(data_str)
+        
+        
+        
         return render_template("playerFound.html", player_data=data_json)
 
 def lookup(player_id, platform_id):
