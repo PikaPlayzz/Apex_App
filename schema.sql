@@ -7,6 +7,7 @@ CREATE TABLE players (
     rank TEXT NOT NULL,
     level INTEGER not NULL,
     platform TEXT not NULL,
+    legend TEXT not NULL,
     badge1 TEXT,
     badge2 TEXT,
     badge3 TEXT,
