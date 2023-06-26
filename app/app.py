@@ -35,10 +35,7 @@ def findPlayer():
         data_str = json.dumps(data)
         print(type(data_str))
         data_json = json.loads(data_str)
-        
-        
-        
-        return render_template("playerFound.html", player_data=data_json)
+        return render_template("player.html", player_data=data_json)
 
 def lookup(player_id, platform_id):
     url = f"https://api.mozambiquehe.re/bridge?auth={API_KEY}&player={player_id}&platform={platform_id}"
