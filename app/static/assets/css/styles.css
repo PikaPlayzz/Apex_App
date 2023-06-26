@@ -22,6 +22,7 @@ header {
     font-size: 50px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     text-align: center;
+    vertical-align: middle;
 }
 p {
     background-color: #404040;
