@@ -10,7 +10,8 @@ load_dotenv()
 app = Flask(__name__)
 
 API_KEY = os.getenv("API_KEY")
-db = cs50.SQL("sqlite:////Users/jackdrisdelle/desktop/code/Apex_App/player.db")
+db = cs50.SQL("sqlite:///player.db")
+
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -59,7 +60,7 @@ def index():
                    data_json['legends']['selected']['data'][1]['value'],
                    data_json['legends']['selected']['data'][2]['value'])
         
-        return render_template("playerFound.html", player_data=data_json)
+        return render_template("player.html", player_data=data_json)
 
 def lookup(player_id, platform_id):
     url = f"https://api.mozambiquehe.re/bridge?auth={API_KEY}&player={player_id}&platform={platform_id}"

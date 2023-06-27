@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect('player.db')
+connection = sqlite3.connect('app/player.db')
 
 
 with open('schema.sql', "r") as f:
