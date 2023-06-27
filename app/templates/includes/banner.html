@@ -1,5 +1,5 @@
 <div class="banner">
-    <head>
+    <!-- <head>
         <style>
             .images {
                 display: flex;
@@ -35,7 +35,11 @@
         <div class="photo">
             <img src="/static/assets/img/4k_Badge.webp" alt="4k badge" width="10" height="100"/>
         </div>
-    </div>
+    </div> -->
 
+    {{ player_data['legends']['selected']['LegendName'] }}
+    {{ player_data['legends']['selected']['gameInfo']['badges'][0]['name'] }}
+    {{ player_data['legends']['selected']['gameInfo']['badges'][1]['name'] }}
+    {{ player_data['legends']['selected']['gameInfo']['badges'][2]['name'] }}
 
 </div>

@@ -3,11 +3,23 @@
     <h2>
         Basics
     </h2>
-        <ul>
-            <!--insert API data here-->
-            <li>Platform: PC</li>
-            <li>level: 235</li>
-            <li>Legend: Bloodhound</li>
-            <li>rank: Diamond IV</li>
-        </ul>
+    <br>
+    <span style="font-size:50px;">
+        {{ player_data['global']['name'] }}
+    </span>
+    <br>
+    <span style="font-size:20px;">
+        Platform: {{ player_data['global']['platform'] }}
+    </span>
+    <br>
+    <span style="font-size:20px;">
+        Global Rank: {{ player_data['global']['rank']['rankName'] }} {{ player_data['global']['rank']['rankDiv']}}
+    </span>
+    <br>
+    <span style="font-size:20px;">
+        Account Level: {{ player_data['global']['level'] }}
+    </span>
+    <br>
+
+
 </div>
