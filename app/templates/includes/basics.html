@@ -1,19 +1,23 @@
 
 <div class="basics">
-    <h2>
-        Basics
-    </h2>
-    <br>
     <span style="font-size:50px;">
-        {{ player_data['global']['name'] }}
+        <b>
+            {{ player_data['global']['name'] }}
+        </b>
     </span>
+    <br>
     <br>
     <span style="font-size:20px;">
         Platform: {{ player_data['global']['platform'] }}
     </span>
     <br>
     <span style="font-size:20px;">
-        Global Rank: {{ player_data['global']['rank']['rankName'] }} {{ player_data['global']['rank']['rankDiv']}}
+        Global Rank: {{ player_data['global']['rank']['rankName'] }} {{ player_data['global']['rank']['rankDiv']}}<br>
+        {{ player_data['global']['rank']['rankScore']}} LP
+    </span>
+    <br>
+    <span style="font-size:20px;">
+        Prestige: {{ player_data['global']['levelPrestige']}}
     </span>
     <br>
     <span style="font-size:20px;">

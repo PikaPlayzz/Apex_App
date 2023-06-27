@@ -37,9 +37,17 @@
         </div>
     </div> -->
 
-    {{ player_data['legends']['selected']['LegendName'] }}
-    {{ player_data['legends']['selected']['gameInfo']['badges'][0]['name'] }}
-    {{ player_data['legends']['selected']['gameInfo']['badges'][1]['name'] }}
-    {{ player_data['legends']['selected']['gameInfo']['badges'][2]['name'] }}
+    <h1>
+        Legend: {{ player_data['legends']['selected']['LegendName'] }}<br>
+    </h1>
+    <span style="font-size:20px;">
+        Badge 1: {{ player_data['legends']['selected']['gameInfo']['badges'][0]['name'] }}<br>
+    </span>
+    <span style="font-size:20px;">
+        Badge 2: {{ player_data['legends']['selected']['gameInfo']['badges'][1]['name'] }}<br>
+    </span>
+    <span style="font-size:20px;">
+        Badge 3: {{ player_data['legends']['selected']['gameInfo']['badges'][2]['name'] }}<br>
+    </span style="font-size:20px;">
 
 </div>

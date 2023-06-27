@@ -1,6 +1,12 @@
 input {
     width: 30%;
 }
+table {
+    border: 2px white;
+    background-color: #404040;
+    margin-left: auto; 
+    margin-right: auto;
+}
 body {
     background-color: #404040;
     color: White;
@@ -33,4 +39,21 @@ p {
     padding: 3px;
     font-size: 18px;
     margin: 30px;
+}
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 50px;
+    padding: 30px;
+}
+
+.photo {
+    max-width: 31.333%;
+    padding: 0 30px;
+    height: 100px;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
 }
