@@ -5,7 +5,7 @@ import requests
 import json
 import sqlite3
 import cs50
-from sqlite3 import Error
+
 load_dotenv()
 app = Flask(__name__)
 
@@ -40,7 +40,7 @@ def index():
         data_str = json.dumps(data)
         print(type(data_str))
         data_json = json.loads(data_str)
-        db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+        db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                    data_json['global']['name'],
                    data_json['global']['rank']['rankName'],
                    data_json['global']['level'],
@@ -51,7 +51,13 @@ def index():
                    data_json['legends']['selected']['gameInfo']['pose'],
                    data_json['legends']['selected']['gameInfo']['badges'][0]['name'],
                    data_json['legends']['selected']['gameInfo']['badges'][1]['name'],
-                   data_json['legends']['selected']['gameInfo']['badges'][2]['name'])
+                   data_json['legends']['selected']['gameInfo']['badges'][2]['name'],
+                   data_json['legends']['selected']['data'][0]['name'],
+                   data_json['legends']['selected']['data'][1]['name'],
+                   data_json['legends']['selected']['data'][2]['name'],
+                   data_json['legends']['selected']['data'][0]['value'],
+                   data_json['legends']['selected']['data'][1]['value'],
+                   data_json['legends']['selected']['data'][2]['value'])
         
         return render_template("playerFound.html", player_data=data_json)
 
