@@ -20,7 +20,19 @@ Player Data
 {{ player_data['legends']['selected']['data'][1]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][1]['value'] }}<br>
 {{ player_data['legends']['selected']['data'][2]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][2]['value'] }}<br>
 
+{% for row in history %}
+<tr>
+    <td>{{ row.get("timeCreated") }}</td>
+    <td>{{ row.get("rank") }}</td>
+    <td>{{ row.get("tracker_name1") }}</td>
+    <td>{{ row.get("tracker_name2") }}</td>
+    <td>{{ row.get("tracker_name3") }}</td>
+    <td>{{ row.get("tracker_value1") }}</td>
+    <td>{{ row.get("tracker_value2") }}</td>
+    <td>{{ row.get("tracker_value3") }}</td>
+</tr>
 
+{% endfor %}
 
 <!-- <hr /> -->
 <!-- {{ player_data }} -->

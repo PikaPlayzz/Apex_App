@@ -19,12 +19,11 @@ def index():
     if request.method == "GET":
         return render_template("index.html")
     else:
-        # conn = get_db_connection()
         
-        # username = request.form.get("player_id")
-        # platform = request.form.get("platform")
-        username = "PikaPlayzMC3083"
-        platform = "X1"
+        username = request.form.get("player_id")
+        platform = request.form.get("platform")
+        # username = "PikaPlayzMC3083"
+        # platform = "X1"
 
         if not username:
             print("Sorry, need username or username not found")
@@ -41,7 +40,12 @@ def index():
         data_str = json.dumps(data)
         print(type(data_str))
         data_json = json.loads(data_str)
-        db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+        if data_json['global']['name'] == None:
+            return render_template("index.html") + "Sorry, there was an issue with the user."
+        if data_json['global']['platform'] == None:
+            return render_template("index.html") + "Sorry, there was an issue with the platform selection."
+        if data_json['legends']['selected']['gameInfo']['badges'][0]['name'] or data_json['legends']['selected']['gameInfo']['badges'][1]['name'] or data_json['legends']['selected']['gameInfo']['badges'][2]['name'] != None:
+            db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
                    data_json['global']['name'],
                    data_json['global']['rank']['rankName'],
                    data_json['global']['level'],
@@ -59,13 +63,44 @@ def index():
                    data_json['legends']['selected']['data'][0]['value'],
                    data_json['legends']['selected']['data'][1]['value'],
                    data_json['legends']['selected']['data'][2]['value'])
+        if data_json['legends']['selected']['data'][0]['name'] or data_json['legends']['selected']['data'][1]['name'] or data_json['legends']['selected']['data'][2]['name'] != None:
+            db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                   data_json['global']['name'],
+                   data_json['global']['rank']['rankName'],
+                   data_json['global']['level'],
+                   data_json['global']['platform'],
+                   data_json['global']['uid'],
+                   data_json['legends']['selected']['LegendName'],
+                   data_json['legends']['selected']['gameInfo']['frame'], 
+                   data_json['legends']['selected']['gameInfo']['pose'],
+                   data_json['legends']['selected']['data'][0]['name'],
+                   data_json['legends']['selected']['data'][1]['name'],
+                   data_json['legends']['selected']['data'][2]['name'],
+                   data_json['legends']['selected']['data'][0]['value'],
+                   data_json['legends']['selected']['data'][1]['value'],
+                   data_json['legends']['selected']['data'][2]['value'])
+ 
+            
         
-        return render_template("player.html", player_data=data_json)
+       
+        history_data = db.execute("SELECT timeCreated, rank, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3 from players WHERE name = ?", data_json['global']['name'])
+        
+        return render_template("playerFound.html", player_data=data_json, history=history_data)
 
 def lookup(player_id, platform_id):
     url = f"https://api.mozambiquehe.re/bridge?auth={API_KEY}&player={player_id}&platform={platform_id}"
     print(url)
-    response = requests.get(url)
-    data = response.json()
+    try:
+        response = requests.get(url)
+        data = response.json()
+    except requests.exceptions.HTTPError as errh:
+            return "An Http Error occurred:" + repr(errh)
+    except requests.exceptions.ConnectionError as errc:
+        return "An Error Connecting to the API occurred:" + repr(errc)
+    except requests.exceptions.Timeout as errt:
+        return "A Timeout Error occurred:" + repr(errt)
+    except requests.exceptions.RequestException as err:
+        return "An Unknown Error occurred" + repr(err)
     return data
+
 
