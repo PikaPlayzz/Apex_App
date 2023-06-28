@@ -36,6 +36,11 @@
             <img src="/static/assets/img/4k_Badge.webp" alt="4k badge" width="10" height="100"/>
         </div>
     </div> -->
+    <body>
+        <head>
+            <link rel="stylesheet" href="/static/assets/css/styles.css">
+        </head>
+    </body>
 
     <h1>
         Legend: {{ player_data['legends']['selected']['LegendName'] }}<br>
@@ -49,5 +54,14 @@
     <span style="font-size:20px;">
         Badge 3: {{ player_data['legends']['selected']['gameInfo']['badges'][2]['name'] }}<br>
     </span style="font-size:20px;">
+    <span style="font-size:20px;">
+        Tracker 1: {{ player_data['legends']['selected']['data'][0]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][0]['value'] }}<br>
+    </span>
+    <span style="font-size:20px;">
+        Tracker 2: {{ player_data['legends']['selected']['data'][1]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][1]['value'] }}<br>
+    </span>
+    <span style="font-size:20px;">
+        Tracker 3: {{ player_data['legends']['selected']['data'][2]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][2]['value'] }}<br>
+    </span>
 
 </div>

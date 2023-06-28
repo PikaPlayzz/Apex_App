@@ -63,29 +63,29 @@ def index():
                    data_json['legends']['selected']['data'][0]['value'],
                    data_json['legends']['selected']['data'][1]['value'],
                    data_json['legends']['selected']['data'][2]['value'])
-        if data_json['legends']['selected']['data'][0]['name'] or data_json['legends']['selected']['data'][1]['name'] or data_json['legends']['selected']['data'][2]['name'] != None:
-            db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-                   data_json['global']['name'],
-                   data_json['global']['rank']['rankName'],
-                   data_json['global']['level'],
-                   data_json['global']['platform'],
-                   data_json['global']['uid'],
-                   data_json['legends']['selected']['LegendName'],
-                   data_json['legends']['selected']['gameInfo']['frame'], 
-                   data_json['legends']['selected']['gameInfo']['pose'],
-                   data_json['legends']['selected']['data'][0]['name'],
-                   data_json['legends']['selected']['data'][1]['name'],
-                   data_json['legends']['selected']['data'][2]['name'],
-                   data_json['legends']['selected']['data'][0]['value'],
-                   data_json['legends']['selected']['data'][1]['value'],
-                   data_json['legends']['selected']['data'][2]['value'])
+        # if data_json['legends']['selected']['data'][0]['name'] or data_json['legends']['selected']['data'][1]['name'] or data_json['legends']['selected']['data'][2]['name'] != None:
+        #     db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+        #            data_json['global']['name'],
+        #            data_json['global']['rank']['rankName'],
+        #            data_json['global']['level'],
+        #            data_json['global']['platform'],
+        #            data_json['global']['uid'],
+        #            data_json['legends']['selected']['LegendName'],
+        #            data_json['legends']['selected']['gameInfo']['frame'], 
+        #            data_json['legends']['selected']['gameInfo']['pose'],
+        #            data_json['legends']['selected']['data'][0]['name'],
+        #            data_json['legends']['selected']['data'][1]['name'],
+        #            data_json['legends']['selected']['data'][2]['name'],
+        #            data_json['legends']['selected']['data'][0]['value'],
+        #            data_json['legends']['selected']['data'][1]['value'],
+        #            data_json['legends']['selected']['data'][2]['value'])
  
             
         
        
         history_data = db.execute("SELECT timeCreated, rank, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3 from players WHERE name = ?", data_json['global']['name'])
         
-        return render_template("playerFound.html", player_data=data_json, history=history_data)
+        return render_template("player.html", player_data=data_json, history=history_data)
 
 def lookup(player_id, platform_id):
     url = f"https://api.mozambiquehe.re/bridge?auth={API_KEY}&player={player_id}&platform={platform_id}"

@@ -6,7 +6,7 @@
         <head>
             <link rel="stylesheet" href="/static/assets/css/styles.css">
         </head>
-        <table>
+        <!-- <table>
             <tr>
                 <th>Date</th>
                 <th>Rank</th>
@@ -31,6 +31,30 @@
                 <td>Wingman Mastery</td>
                 <td>Wins: 9</td>
             </tr>
+        </table> -->
+        <table>
+            <tr>
+                <th>Time</th>
+                <th>Rank</th> 
+                <th>Tracker1</th>
+                <th>Tracker2</th>
+                <th>Tracker3</th>
+
+            </tr>
         </table>
+        {% for row in history %}
+        <tr>
+            <td>{{ row.get("timeCreated") }}</td>
+            <td>{{ row.get("rank") }}</td>
+            <td>{{ row.get("tracker_name1") }}</td>
+            <td>{{ row.get("tracker_value1") }}</td>
+            <td>{{ row.get("tracker_name2") }}</td>
+            <td>{{ row.get("tracker_value2") }}</td>
+            <td>{{ row.get("tracker_name3") }}</td>
+            <td>{{ row.get("tracker_value3") }}</td>
+            <br>
+        </tr>
+    
+        {% endfor %}
     </body>
 </div>
