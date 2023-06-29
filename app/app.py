@@ -44,7 +44,7 @@ def index():
         # print(type(data_str))
         data_json = json.loads(data_str)
         
-        if data_json['Error']:
+        if 'Error' in data_json:
             return render_template("errorPage.html")
         
         
