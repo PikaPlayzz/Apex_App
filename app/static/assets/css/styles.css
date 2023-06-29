@@ -1,8 +1,8 @@
 input {
     width: 30%;
 }
-table {
-    border: 2px white;
+table, th, td {
+    border: 2px;
     background-color: #404040;
     margin-left: auto; 
     margin-right: auto;
@@ -18,7 +18,7 @@ body {
 footer {
     background: #404040;
     bottom: 5px;
-    position: absolute;
+    /* position: absolute; */
     clear: both;
 }
 header {
@@ -43,13 +43,13 @@ p {
 .images {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 50px;
+    margin: 50px;
     padding: 30px;
 }
 
 .photo {
     max-width: 31.333%;
-    padding: 0 30px;
+    padding: 30px;
     height: 100px;
 }
 
