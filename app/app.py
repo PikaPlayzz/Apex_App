@@ -51,17 +51,13 @@ def index():
         tracker_3_value = None
         
         
+        trackers = []
+        for tracker in data_json['legends']['selected']['data']:
+            trackers.append(tracker)
 
-
-        if len(data_json['legends']['selected']['data'][0]) != None:
-            tracker_1_name = data_json['legends']['selected']['data'][0]['name']
-            tracker_1_value = data_json['legends']['selected']['data'][0]['value']
-        if len(data_json['legends']['selected']['data'][1]) != None:
-            tracker_2_name = data_json['legends']['selected']['data'][1]['name']
-            tracker_2_value = data_json['legends']['selected']['data'][1]['value']
-        if len(data_json['legends']['selected']['data'][2]) != None:
-            tracker_3_name = data_json['legends']['selected']['data'][2]['name']
-            tracker_3_value = data_json['legends']['selected']['data'][2]['value']
+        badges = []
+        for badge in data_json['legends']['selected']['gameInfo']['badges']:
+            badges.append(badge)
         
 
         db.execute("insert into players (name, rank, rankDiv, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
@@ -74,15 +70,15 @@ def index():
                 data_json['legends']['selected']['LegendName'],
                 data_json['legends']['selected']['gameInfo']['frame'], 
                 data_json['legends']['selected']['gameInfo']['pose'],
-                data_json['legends']['selected']['gameInfo']['badges'][0]['name'],
-                data_json['legends']['selected']['gameInfo']['badges'][1]['name'],
-                data_json['legends']['selected']['gameInfo']['badges'][2]['name'],
-                tracker_1_name,
-                tracker_2_name,
-                tracker_3_name,
-                tracker_1_value,
-                tracker_2_value,
-                tracker_3_value
+                badges[0]['name'] if len(badges)>0 != None else None,
+                badges[1]['name'] if len(badges)>1 != None else None,
+                badges[2]['name'] if len(badges)>2 != None else None,
+                trackers[0]['name'] if len(trackers)>0 != None else None,
+                trackers[1]['name'] if len(trackers)>1 != None else None,
+                trackers[2]['name'] if len(trackers)>2 != None else None,
+                trackers[0]['value'] if len(trackers)>0 != None else None,
+                trackers[1]['value'] if len(trackers)>1 != None else None,
+                trackers[2]['value'] if len(trackers)>2 != None else None
                 )
         
             
@@ -107,5 +103,4 @@ def lookup(player_id, platform_id):
     except requests.exceptions.RequestException as err:
         return "An Unknown Error occurred" + repr(err)
     return data
-
 
