@@ -27,10 +27,12 @@ def index():
 
         if not username:
             print("Sorry, need username or username not found")
+            return render_template("index.html") + "Sorry, there was an issue with the user."
 
         if not platform:
             print("Sorry, need platform or platform not found")
             print("use PSN, XBL, Steam, Origin")
+            return render_template("index.html") + "Sorry, there was an issue with the platform selection."
 
         data = lookup(username, platform)
         # print(data)
@@ -40,50 +42,53 @@ def index():
         data_str = json.dumps(data)
         print(type(data_str))
         data_json = json.loads(data_str)
-        if data_json['global']['name'] == None:
-            return render_template("index.html") + "Sorry, there was an issue with the user."
-        if data_json['global']['platform'] == None:
-            return render_template("index.html") + "Sorry, there was an issue with the platform selection."
-        if data_json['legends']['selected']['gameInfo']['badges'][0]['name'] or data_json['legends']['selected']['gameInfo']['badges'][1]['name'] or data_json['legends']['selected']['gameInfo']['badges'][2]['name'] != None:
-            db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-                   data_json['global']['name'],
-                   data_json['global']['rank']['rankName'],
-                   data_json['global']['level'],
-                   data_json['global']['platform'],
-                   data_json['global']['uid'],
-                   data_json['legends']['selected']['LegendName'],
-                   data_json['legends']['selected']['gameInfo']['frame'], 
-                   data_json['legends']['selected']['gameInfo']['pose'],
-                   data_json['legends']['selected']['gameInfo']['badges'][0]['name'],
-                   data_json['legends']['selected']['gameInfo']['badges'][1]['name'],
-                   data_json['legends']['selected']['gameInfo']['badges'][2]['name'],
-                   data_json['legends']['selected']['data'][0]['name'],
-                   data_json['legends']['selected']['data'][1]['name'],
-                   data_json['legends']['selected']['data'][2]['name'],
-                   data_json['legends']['selected']['data'][0]['value'],
-                   data_json['legends']['selected']['data'][1]['value'],
-                   data_json['legends']['selected']['data'][2]['value'])
-        # if data_json['legends']['selected']['data'][0]['name'] or data_json['legends']['selected']['data'][1]['name'] or data_json['legends']['selected']['data'][2]['name'] != None:
-        #     db.execute("insert into players (name, rank, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-        #            data_json['global']['name'],
-        #            data_json['global']['rank']['rankName'],
-        #            data_json['global']['level'],
-        #            data_json['global']['platform'],
-        #            data_json['global']['uid'],
-        #            data_json['legends']['selected']['LegendName'],
-        #            data_json['legends']['selected']['gameInfo']['frame'], 
-        #            data_json['legends']['selected']['gameInfo']['pose'],
-        #            data_json['legends']['selected']['data'][0]['name'],
-        #            data_json['legends']['selected']['data'][1]['name'],
-        #            data_json['legends']['selected']['data'][2]['name'],
-        #            data_json['legends']['selected']['data'][0]['value'],
-        #            data_json['legends']['selected']['data'][1]['value'],
-        #            data_json['legends']['selected']['data'][2]['value'])
- 
-            
         
-       
-        history_data = db.execute("SELECT timeCreated, rank, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3 from players WHERE name = ? ORDER BY timeCreated DESC", data_json['global']['name'])
+        tracker_1_name = None
+        tracker_1_value = None
+        tracker_2_name = None
+        tracker_2_value = None
+        tracker_3_name = None
+        tracker_3_value = None
+        
+        
+
+
+        if len(data_json['legends']['selected']['data'][0]) != None:
+            tracker_1_name = data_json['legends']['selected']['data'][0]['name']
+            tracker_1_value = data_json['legends']['selected']['data'][0]['value']
+        if len(data_json['legends']['selected']['data'][1]) != None:
+            tracker_2_name = data_json['legends']['selected']['data'][1]['name']
+            tracker_2_value = data_json['legends']['selected']['data'][1]['value']
+        if len(data_json['legends']['selected']['data'][2]) != None:
+            tracker_3_name = data_json['legends']['selected']['data'][2]['name']
+            tracker_3_value = data_json['legends']['selected']['data'][2]['value']
+        
+
+        db.execute("insert into players (name, rank, rankDiv, level, platform, uid, legend, frame, pose, badge1, badge2, badge3, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                data_json['global']['name'],
+                data_json['global']['rank']['rankName'],
+                data_json['global']['rank']['rankDiv'],
+                data_json['global']['level'],
+                data_json['global']['platform'],
+                data_json['global']['uid'],
+                data_json['legends']['selected']['LegendName'],
+                data_json['legends']['selected']['gameInfo']['frame'], 
+                data_json['legends']['selected']['gameInfo']['pose'],
+                data_json['legends']['selected']['gameInfo']['badges'][0]['name'],
+                data_json['legends']['selected']['gameInfo']['badges'][1]['name'],
+                data_json['legends']['selected']['gameInfo']['badges'][2]['name'],
+                tracker_1_name,
+                tracker_2_name,
+                tracker_3_name,
+                tracker_1_value,
+                tracker_2_value,
+                tracker_3_value
+                )
+        
+            
+        history_data = db.execute("SELECT timeCreated, rank, rankDiv, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3 from players WHERE name = ?;", data_json['global']['name'])
+    
+
         
         return render_template("player.html", player_data=data_json, history=history_data)
 

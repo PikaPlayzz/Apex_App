@@ -9,32 +9,47 @@ Player Data
 
 {{ player_data['global']['name'] }}<br>
 {{ player_data['global']['platform'] }}<br>
-{{ player_data['global']['rank']['rankName'] }}<br>
-<!-- {{ player_data['global']['rank']['rankImg'] }}<br> -->
+<a>{{ player_data['global']['rank']['rankName'] }} {{ player_data['global']['rank']['rankDiv'] }}</a><br>
 {{ player_data['global']['level'] }}<br>
 {{ player_data['legends']['selected']['LegendName'] }}<br>
-{{ player_data['legends']['selected']['gameInfo']['badges'][0]['name'] }}<br>
-{{ player_data['legends']['selected']['gameInfo']['badges'][1]['name'] }}<br>
-{{ player_data['legends']['selected']['gameInfo']['badges'][2]['name'] }}<br>
-{{ player_data['legends']['selected']['data'][0]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][0]['value'] }}<br>
-{{ player_data['legends']['selected']['data'][1]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][1]['value'] }}<br>
-{{ player_data['legends']['selected']['data'][2]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][2]['value'] }}<br>
+
+<!-- Making badge checks -->
+{% if 'name' in player_data['legends']['selected']['gameInfo']['badges'][0] %}
+    {{ player_data['legends']['selected']['gameInfo']['badges'][0]['name'] }}<br>
+{% endif %}
+
+{% if 'name' in player_data['legends']['selected']['gameInfo']['badges'][1] %}
+    {{ player_data['legends']['selected']['gameInfo']['badges'][1]['name'] }}<br>
+{% endif %}
+
+{% if 'name' in player_data['legends']['selected']['gameInfo']['badges'][2] %}
+    {{ player_data['legends']['selected']['gameInfo']['badges'][2]['name'] }}<br>
+{% endif %}
+<!-- making trackers checks -->
+{% if 'name' in player_data['legends']['selected']['data'][0] and 'value' in player_data['legends']['selected']['data'][0]%}
+    {{ player_data['legends']['selected']['data'][0]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][0]['value'] }}<br>
+{% endif %}
+
+{% if 'name' in player_data['legends']['selected']['data'][1] and 'value' in player_data['legends']['selected']['data'][1] %}
+    {{ player_data['legends']['selected']['data'][1]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][1]['value'] }}<br>
+{% endif %}
+
+{% if 'name' in player_data['legends']['selected']['data'][2] and 'value' in player_data['legends']['selected']['data'][2] %}
+    {{ player_data['legends']['selected']['data'][2]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][2]['value'] }}<br>
+{% endif %}
+<hr/>
 
 {% for row in history %}
 <tr>
-    <td>{{ row.get("timeCreated") }}</td>
-    <td>{{ row.get("rank") }}</td>
-    <td>{{ row.get("tracker_name1") }}</td>
-    <td>{{ row.get("tracker_name2") }}</td>
-    <td>{{ row.get("tracker_name3") }}</td>
-    <td>{{ row.get("tracker_value1") }}</td>
-    <td>{{ row.get("tracker_value2") }}</td>
-    <td>{{ row.get("tracker_value3") }}</td>
+    <td>{{ row.get("timeCreated") }}</td><br>
+    <td>{{ row.get("rank") }}</td> <td>{{ row.get("rankDiv") }}</td><br>
+    <td>{{ row.get("tracker_name1") }}</td>: <td>{{ row.get("tracker_value1") }}</td><br>
+    <td>{{ row.get("tracker_name2") }}</td>: <td>{{ row.get("tracker_value2") }}</td><br>
+    <td>{{ row.get("tracker_name3") }}</td>: <td>{{ row.get("tracker_value3") }}</td><br>
+    
+    <hr/>
+    
 </tr>
-
 {% endfor %}
-
-<!-- <hr /> -->
-<!-- {{ player_data }} -->
 
 {% endblock %}
