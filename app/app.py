@@ -33,22 +33,20 @@ def index():
             print("Sorry, need platform or platform not found")
             print("use PSN, XBL, Steam, Origin")
             return render_template("index.html") + "Sorry, there was an issue with the platform selection."
+        
 
         data = lookup(username, platform)
         # print(data)
 
         # lookup(username, platform)
-        print(type(data))
+        # print(type(data))
         data_str = json.dumps(data)
-        print(type(data_str))
+        # print(type(data_str))
         data_json = json.loads(data_str)
         
-        tracker_1_name = None
-        tracker_1_value = None
-        tracker_2_name = None
-        tracker_2_value = None
-        tracker_3_name = None
-        tracker_3_value = None
+        if data_json['Error']:
+            return render_template("errorPage.html")
+        
         
         
         trackers = []
@@ -91,16 +89,8 @@ def index():
 def lookup(player_id, platform_id):
     url = f"https://api.mozambiquehe.re/bridge?auth={API_KEY}&player={player_id}&platform={platform_id}"
     print(url)
-    try:
-        response = requests.get(url)
-        data = response.json()
-    except requests.exceptions.HTTPError as errh:
-            return "An Http Error occurred:" + repr(errh)
-    except requests.exceptions.ConnectionError as errc:
-        return "An Error Connecting to the API occurred:" + repr(errc)
-    except requests.exceptions.Timeout as errt:
-        return "A Timeout Error occurred:" + repr(errt)
-    except requests.exceptions.RequestException as err:
-        return "An Unknown Error occurred" + repr(err)
+    response = requests.get(url)
+    data = response.json()
+
     return data
 
