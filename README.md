@@ -1,4 +1,5 @@
-# Apex_App
+# Apex_Tracker_App
+#### Video Demo:  <URL HERE>
 
 References
 <https://blog.gitguardian.com/how-to-handle-secrets-in-python/>
@@ -15,3 +16,5 @@ $ pip install python-dotenv
 To Run the app,set your api key, then while in Apex_App/app use flask run.
 
 In order to make a call, you have to got to https://portal.apexlegendsapi.com/ and make a key. then add it to the .env file like so: API_KEY="<your_Key>"
+
+This app is designed 
