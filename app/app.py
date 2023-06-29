@@ -80,7 +80,7 @@ def index():
                 )
         
             
-        history_data = db.execute("SELECT timeCreated, rank, rankDiv, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3 from players WHERE name = ?;", data_json['global']['name'])
+        history_data = db.execute("SELECT timeCreated, rank, rankDiv, tracker_name1, tracker_name2, tracker_name3, tracker_value1, tracker_value2, tracker_value3 from players WHERE name = ? ORDER BY timeCreated DESC;", data_json['global']['name'])
     
 
         

@@ -1,41 +1,4 @@
 <div class="banner">
-    <!-- <head>
-        <style>
-            .images {
-                display: flex;
-                flex-wrap: wrap;
-                margin: 0 50px;
-                padding: 30px;
-            }
-      
-            .photo {
-                max-width: 31.333%;
-                padding: 0 30px;
-                height: 100px;
-            }
-      
-            .photo img {
-                width: 100%;
-                height: 100%;
-            }
-        </style>
-    </head>
-    <h1>
-        banner
-    </h1>
-    <div class="images">
-        <div class="photo">
-            <img src="/static/assets/img/S15_Predator.webp" alt="S15 Predator badge" width="100" height="100"/>
-        </div>
-  
-        <div class="photo">
-            <img src="/static/assets/img/20_kill_badge.webp" alt="20 bomb badge" width="100" height="100"/>
-        </div>
-          
-        <div class="photo">
-            <img src="/static/assets/img/4k_Badge.webp" alt="4k badge" width="10" height="100"/>
-        </div>
-    </div> -->
     <body>
         <head>
             <link rel="stylesheet" href="/static/assets/css/styles.css">
@@ -45,36 +8,36 @@
     <h1>
         Legend: {{ player_data['legends']['selected']['LegendName'] }}<br>
     </h1>
+
+    <!-- Make badge checks -->
     <span style="font-size:20px;">
-        Badge 1: {{ player_data['legends']['selected']['gameInfo']['badges'][0]['name'] }}<br>
+        {% if 'name' in player_data['legends']['selected']['gameInfo']['badges'][0] %}
+            Badge 1: {{ player_data['legends']['selected']['gameInfo']['badges'][0]['name'] }}<br>
+        {% endif %}
     </span>
     <span style="font-size:20px;">
-        Badge 2: {{ player_data['legends']['selected']['gameInfo']['badges'][1]['name'] }}<br>
+        {% if 'name' in player_data['legends']['selected']['gameInfo']['badges'][1] %}
+            Badge 2: {{ player_data['legends']['selected']['gameInfo']['badges'][1]['name'] }}<br>
+        {% endif %}
     </span>
     <span style="font-size:20px;">
-        Badge 3: {{ player_data['legends']['selected']['gameInfo']['badges'][2]['name'] }}<br>
+        {% if 'name' in player_data['legends']['selected']['gameInfo']['badges'][2] %}
+            Badge 3: {{ player_data['legends']['selected']['gameInfo']['badges'][2]['name'] }}<br>
+        {% endif %}
     </span style="font-size:20px;">
     <span style="font-size:20px;">
-        Tracker 1: {{ player_data['legends']['selected']['data'][0]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][0]['value'] }}<br>
+        {% if 'name' in player_data['legends']['selected']['data'][0] and 'value' in player_data['legends']['selected']['data'][0]%}
+            {{ player_data['legends']['selected']['data'][0]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][0]['value'] }}<br>
+        {% endif %}
     </span>
     <span style="font-size:20px;">
-        Tracker 2: {{ player_data['legends']['selected']['data'][1]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][1]['value'] }}<br>
+        {% if 'name' in player_data['legends']['selected']['data'][1] and 'value' in player_data['legends']['selected']['data'][1] %}
+            {{ player_data['legends']['selected']['data'][1]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][1]['value'] }}<br>
+        {% endif %}
     </span>
     <span style="font-size:20px;">
-        Tracker 3: {{ player_data['legends']['selected']['data'][2]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][2]['value'] }}<br>
+        {% if 'name' in player_data['legends']['selected']['data'][2] and 'value' in player_data['legends']['selected']['data'][2] %}
+            {{ player_data['legends']['selected']['data'][2]['name'] }}<a>: </a>{{ player_data['legends']['selected']['data'][2]['value'] }}<br>
+        {% endif %}
     </span>
-    <div class="images">
-        <div class="photo">
-            <img src="/static/assets/img/Legend_Badges/Badge_Assassin_IV.webp" alt="S15 Predator badge" width="100" height="100"/>
-        </div>
-  
-        <div class="photo">
-            <img src="/static/assets/img/Legend_badges/Badge_LEGENDs_Wake.webp" alt="20 bomb badge" width="100" height="100"/>
-        </div>
-          
-        <div class="photo">
-            <img src="/static/assets/img/Ranked_Badges/Badge_Youre_Tiering_Me_Apart_Gold_RS8.webp" alt="Ranked Badge" width="10" height="100"/>
-        </div>
-    </div>
-
 </div>

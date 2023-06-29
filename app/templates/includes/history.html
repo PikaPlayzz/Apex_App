@@ -7,17 +7,16 @@
             <link rel="stylesheet" href="/static/assets/css/styles.css">
         </head>
         <br>
-         {% for row in history %}
+        {% for row in history %}
         <tr>
-            <td>{{ row.get("timeCreated") }} |</td>
-            <td>{{ row.get("rank") }} |</td>
-            <td>{{ row.get("tracker_name1") }}:</td>
-            <td>{{ row.get("tracker_value1") }} |</td>
-            <td>{{ row.get("tracker_name2") }}:</td>
-            <td>{{ row.get("tracker_value2") }} |</td>
-            <td>{{ row.get("tracker_name3") }}:</td>
-            <td>{{ row.get("tracker_value3") }}</td>
-            <br>
+            <td>{{ row.get("timeCreated") }}</td><br>
+            <td>{{ row.get("rank") }}</td> <td>{{ row.get("rankDiv") }}</td><br>
+            <td>{{ row.get("tracker_name1") }}</td>: <td>{{ row.get("tracker_value1") }}</td><br>
+            <td>{{ row.get("tracker_name2") }}</td>: <td>{{ row.get("tracker_value2") }}</td><br>
+            <td>{{ row.get("tracker_name3") }}</td>: <td>{{ row.get("tracker_value3") }}</td><br>
+            
+            <hr/>
+            
         </tr>
         {% endfor %}
     </body>
